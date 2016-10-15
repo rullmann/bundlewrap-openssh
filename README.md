@@ -22,4 +22,18 @@ This bundle has been tested on the following systems:
 
 ## Metadata
 
-* none so far
+OpenSSH requires an IP(v6) address and a `main_interface`. Currently no additional listen interfaces are supported.
+
+    'metadata': {
+        'interfaces': {
+            'eth0': {
+                'ip_address': '192.168.1.2',
+                'ipv6_address': '2001:xxxx:xxxx::1', # optional
+            },
+        },
+        'main_interface': 'eth0',
+        'openssh': {
+            'listen_ipv6': True, # Optional, True by default
+            'listen_ipv6': False, # Optional, False by default
+        },
+    }
