@@ -1,4 +1,4 @@
-pkg_yum = {
+pkg_dnf = {
     "openssh-server": {},
 }
 
@@ -44,7 +44,7 @@ if node.has_bundle("firewalld"):
             'unless': "firewall-cmd --zone={} --list-services | grep ssh".format(default_zone),
             'cascade_skip': False,
             'needs': [
-                "pkg_yum:firewalld",
+                "pkg_dnf:firewalld",
             ],
             'triggers': [
                 "action:firewalld_reload",
@@ -58,7 +58,7 @@ if node.has_bundle("firewalld"):
                 'unless': "firewall-cmd --zone={} --list-services | grep ssh".format(custom_zone),
                 'cascade_skip': False,
                 'needs': [
-                    "pkg_yum:firewalld",
+                    "pkg_dnf:firewalld",
                 ],
                 'triggers': [
                     "action:firewalld_reload",
@@ -70,7 +70,7 @@ if node.has_bundle("firewalld"):
             'unless': "firewall-cmd --list-services | grep ssh",
             'cascade_skip': False,
             'needs': [
-                "pkg_yum:firewalld",
+                "pkg_dnf:firewalld",
             ],
             'triggers': [
                 "action:firewalld_reload",
