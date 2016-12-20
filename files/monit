@@ -1,0 +1,15 @@
+# openssh
+
+  check process openssh
+    matching "/usr/sbin/sshd"
+    start program = "/usr/bin/systemctl start sshd"
+    stop program  = "/usr/bin/systemctl stop sshd"
+    if cpu > 10% for 2 cycles then alert
+    if cpu > 20% for 5 cycles then restart
+% if node.metadata.get('openssh', {}).get('listen_ipv4', True):
+    if failed host ${node.metadata["interfaces"][node.metadata["main_interface"]]["ip_address"]} port 22 type tcp protocol ssh then restart
+% endif
+% if node.metadata.get('openssh', {}).get('listen_ipv6', False):
+    if failed host "${node.metadata["interfaces"][node.metadata["main_interface"]]["ipv6_address"]}" port 22 type tcp protocol ssh then restart
+% endif
+    if 3 restarts within 5 cycles then timeout

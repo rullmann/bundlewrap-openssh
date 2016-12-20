@@ -19,6 +19,7 @@ This bundle has been tested on the following systems:
     * Zone settings from firewalld bundle will be used
   * [users](https://github.com/rullmann/bundlewrap-users)
     * Ability to add ssh keys for users
+  * [monit](https://github.com/rullmann/bundlewrap-monit)
 
 ## Metadata
 
