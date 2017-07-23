@@ -37,6 +37,7 @@ ClientAliveCountMax 2
 
 MaxSessions 2
 AllowTcpForwarding no
+TCPKeepAlive no
 X11Forwarding no
 PrintMotd no
 Banner /etc/ssh/sshd_banner
