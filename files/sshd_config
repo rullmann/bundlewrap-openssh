@@ -35,6 +35,7 @@ UsePAM yes
 ClientAliveInterval 30
 ClientAliveCountMax 2
 
+MaxSessions 2
 AllowTcpForwarding no
 X11Forwarding no
 PrintMotd no
