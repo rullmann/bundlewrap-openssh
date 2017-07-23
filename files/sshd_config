@@ -23,7 +23,6 @@ PermitRootLogin no
 StrictModes yes
 MaxAuthTries 3
 
-RSAAuthentication no
 PubkeyAuthentication yes
 AuthorizedKeysFile	.ssh/authorized_keys
 PasswordAuthentication no
