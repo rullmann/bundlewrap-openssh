@@ -22,7 +22,7 @@ LogLevel VERBOSE
 LoginGraceTime 1m
 PermitRootLogin no
 StrictModes yes
-MaxAuthTries 3
+MaxAuthTries 2
 
 PubkeyAuthentication yes
 AuthorizedKeysFile	.ssh/authorized_keys
