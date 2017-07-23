@@ -17,7 +17,7 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@op
 # Logging
 SyslogFacility AUTHPRIV
 
-# Authentication:
+# Authentication
 LoginGraceTime 1m
 PermitRootLogin no
 StrictModes yes
@@ -29,6 +29,10 @@ PasswordAuthentication no
 ChallengeResponseAuthentication no
 GSSAPIAuthentication no
 UsePAM yes
+
+# Client Alive settings
+ClientAliveInterval 30
+ClientAliveCountMax 2
 
 AllowTcpForwarding no
 X11Forwarding no
