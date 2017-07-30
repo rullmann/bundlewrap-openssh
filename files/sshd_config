@@ -35,7 +35,7 @@ UsePAM yes
 ClientAliveInterval 30
 ClientAliveCountMax 2
 
-MaxSessions 2
+MaxSessions 8
 AllowTcpForwarding no
 TCPKeepAlive no
 X11Forwarding no
