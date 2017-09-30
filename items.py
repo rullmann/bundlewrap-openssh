@@ -3,17 +3,13 @@ pkg_dnf = {
 }
 
 svc_systemd = {
-    'sshd': {
-        'enabled': True,
-    },
+    'sshd': {},
 }
 
 files = {
     "/etc/ssh/sshd_config": {
         'source': "sshd_config",
         'mode': "0600",
-        'owner': "root",
-        'group': "root",
         'content_type': "mako",
         'triggers': [
             "svc_systemd:sshd:restart",
@@ -22,15 +18,11 @@ files = {
     "/etc/ssh/sshd_banner": {
         'source': "sshd_banner",
         'mode': "0600",
-        'owner': "root",
-        'group': "root",
         'content_type': "mako",
     },
     "/etc/ssh/ssh_config": {
         'source': "ssh_config",
         'mode': "0600",
-        'owner': "root",
-        'group': "root",
     },
 }
 
@@ -81,8 +73,6 @@ if node.has_bundle("monit"):
     files['/etc/monit.d/openssh'] = {
         'source': "monit",
         'mode': "0640",
-        'owner': "root",
-        'group': "root",
         'content_type': "mako",
         'triggers': [
             "svc_systemd:monit:restart",
