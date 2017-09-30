@@ -11,9 +11,7 @@ files = {
         'source': 'sshd_config',
         'mode': '0600',
         'content_type': 'mako',
-        'triggers': [
-            'svc_systemd:sshd:restart',
-        ],
+        'triggers': ['svc_systemd:sshd:restart'],
     },
     '/etc/ssh/sshd_banner': {
         'source': 'sshd_banner',
@@ -35,12 +33,8 @@ if node.has_bundle('firewalld'):
             'command': 'firewall-cmd --permanent --zone={} --add-service=ssh'.format(default_zone),
             'unless': 'firewall-cmd --zone={} --list-services | grep ssh'.format(default_zone),
             'cascade_skip': False,
-            'needs': [
-                'pkg_dnf:firewalld',
-            ],
-            'triggers': [
-                'action:firewalld_reload',
-            ],
+            'needs': ['pkg_dnf:firewalld'],
+            'triggers': ['action:firewalld_reload'],
         }
     elif node.metadata.get('firewalld', {}).get('custom_zones', False):
         for interface in node.metadata['interfaces']:
@@ -49,24 +43,16 @@ if node.has_bundle('firewalld'):
                 'command': 'firewall-cmd --permanent --zone={} --add-service=ssh'.format(custom_zone),
                 'unless': 'firewall-cmd --zone={} --list-services | grep ssh'.format(custom_zone),
                 'cascade_skip': False,
-                'needs': [
-                    'pkg_dnf:firewalld',
-                ],
-                'triggers': [
-                    'action:firewalld_reload',
-                ],
+                'needs': ['pkg_dnf:firewalld'],
+                'triggers': ['action:firewalld_reload'],
             }
     else:
         actions['firewalld_add_ssh'] = {
             'command': 'firewall-cmd --permanent --add-service=ssh',
             'unless': 'firewall-cmd --list-services | grep ssh',
             'cascade_skip': False,
-            'needs': [
-                'pkg_dnf:firewalld',
-            ],
-            'triggers': [
-                'action:firewalld_reload',
-            ],
+            'needs': ['pkg_dnf:firewalld'],
+            'triggers': ['action:firewalld_reload'],
         }
 
 if node.has_bundle('monit'):
@@ -74,7 +60,5 @@ if node.has_bundle('monit'):
         'source': 'monit',
         'mode': '0640',
         'content_type': 'mako',
-        'triggers': [
-            'svc_systemd:monit:restart',
-        ],
+        'triggers': ['svc_systemd:monit:restart'],
     }
