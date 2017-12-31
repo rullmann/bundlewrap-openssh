@@ -26,6 +26,13 @@ files = {
 
 actions = {}
 
+if node.os == 'fedora' and node.os_version >= (27):
+    files['/etc/sysconfig/sshd'] = {
+        'source': 'sysconfig_sshd',
+        'mode': '0640',
+        'triggers': ['svc_systemd:sshd:restart'],
+    }
+
 if node.has_bundle('firewalld'):
     if node.metadata.get('firewalld', {}).get('default_zone'):
         default_zone = node.metadata.get('firewalld', {}).get('default_zone')
