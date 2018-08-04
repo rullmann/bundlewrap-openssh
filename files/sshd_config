@@ -41,7 +41,6 @@ TCPKeepAlive no
 X11Forwarding no
 PrintMotd no
 Banner /etc/ssh/sshd_banner
-UsePrivilegeSeparation sandbox
 UseDNS no
 Compression no
 AllowAgentForwarding no
