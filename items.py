@@ -2,9 +2,7 @@ pkg_dnf = {
     'openssh-server': {},
 }
 
-svc_systemd = {
-    'sshd': {},
-}
+svc_systemd = {}
 
 files = {
     '/etc/ssh/sshd_config': {
@@ -31,6 +29,14 @@ if node.os == 'fedora' and node.os_version >= (27):
         'source': 'sysconfig_sshd',
         'mode': '0640',
         'triggers': ['svc_systemd:sshd:restart'],
+    }
+
+if node.metadata.get('openssh', {}).get('enable_systemd_service', True):
+    svc_systemd['sshd'] = {}
+else:
+    svc_systemd['sshd'] = {
+        'enabled': False,
+        'running': None,
     }
 
 if node.has_bundle('firewalld'):

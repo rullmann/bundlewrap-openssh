@@ -27,5 +27,6 @@ OpenSSH requires an IP(v6) address and a `main_interface`. Currently no addition
         'openssh': {
             'listen_ipv6': True, # Optional, True by default
             'listen_ipv6': False, # Optional, False by default
+            'enable_systemd_service': True, # Optional, True by default. Might be used on laptops etc. where openssh should be configured, but not enabled
         },
     }
