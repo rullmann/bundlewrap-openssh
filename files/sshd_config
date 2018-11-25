@@ -4,6 +4,10 @@ ListenAddress ${node.metadata["interfaces"][node.metadata["main_interface"]]["ip
 % if node.metadata.get('openssh', {}).get('listen_ipv6', False):
 ListenAddress [${node.metadata["interfaces"][node.metadata["main_interface"]]["ipv6_address"]}]:22
 % endif
+% if node.metadata.get('openssh', {}).get('listen_all', False):
+Port 22
+ListenAddress ::
+% endif
 
 Protocol 2
 
