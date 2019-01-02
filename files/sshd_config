@@ -6,6 +6,7 @@ ListenAddress [${node.metadata["interfaces"][node.metadata["main_interface"]]["i
 % endif
 % if node.metadata.get('openssh', {}).get('listen_all', False):
 Port 22
+ListenAddress 0.0.0.0
 ListenAddress ::
 % endif
 
